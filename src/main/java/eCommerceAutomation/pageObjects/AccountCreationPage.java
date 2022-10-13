@@ -53,8 +53,13 @@ public class AccountCreationPage {
 		dropDownState.selectByIndex(1);
 		dropDownCountry.selectByIndex(1);
 	}
-	
-		
+	public void inputAddressInformation(String address, String city, String postalcode)
+	{
+		addressInput.sendKeys(address);
+		cityInput.sendKeys(city);
+		postalcodeInput.sendKeys(postalcode);				
+	}
+	public void 
 	
 	
 	
