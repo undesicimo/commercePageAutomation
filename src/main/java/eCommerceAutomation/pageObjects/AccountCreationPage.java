@@ -36,30 +36,55 @@ public class AccountCreationPage {
 	WebElement mobilePhoneInput;
 	@FindBy(id="submitAccount")
 	WebElement registerButton;
+	@FindBy(id="days")
+	WebElement dropDownDay;
+	@FindBy(id="months")
+	WebElement dropDownDate;
+	@FindBy(id="years")
+	WebElement dropDownYear;
+	@FindBy(id="id_state")
+	WebElement dropDownState;
+	@FindBy(id="id_country")
+	WebElement dropDownCountry;
+
 	
-	Select dropDownDay = new Select(driver.findElement(By.id("days")));
-	Select dropDownDate = new Select(driver.findElement(By.id("months")));
-	Select dropDownYear = new Select(driver.findElement(By.id("years")));
-	Select dropDownState = new Select(driver.findElement(By.id("id_state")));
-	Select dropDownCountry = new Select(driver.findElement(By.id("id_country")));
-	 
 	public void inputPersonalInformation( String firstName, String lastName, String password ) {
 		mrRadioButton.click();
 		firstNameInput.sendKeys(firstName);
 		lastNameInput.sendKeys(lastName);
 		passwordInput.sendKeys(password);
-		dropDownDay.selectByIndex(1);
-		dropDownDate.selectByIndex(1);
-		dropDownState.selectByIndex(1);
-		dropDownCountry.selectByIndex(1);
 	}
-	public void inputAddressInformation(String address, String city, String postalcode)
+	
+	public void inputAddressInformation(String address, String city, String postalcode,String phoneNumber)
 	{
 		addressInput.sendKeys(address);
 		cityInput.sendKeys(city);
-		postalcodeInput.sendKeys(postalcode);				
+		postalcodeInput.sendKeys(postalcode);
+		mobilePhoneInput.sendKeys(phoneNumber);
+		
 	}
-	public void 
+	
+	public void inputAccountDropdowns(int index)
+	{
+		Select selDropDownDay = new Select(dropDownDay);
+		Select selDropDownDate = new Select(dropDownDate);
+		Select selDropDownYear = new Select(dropDownYear);
+		Select selDropDownState = new Select(dropDownState);
+		Select selDropDownCountry = new Select(dropDownCountry);
+		
+		selDropDownDay.selectByIndex(index);
+		selDropDownDate.selectByIndex(index);
+		selDropDownYear.selectByIndex(index);
+		selDropDownState.selectByIndex(index);
+		selDropDownCountry.selectByIndex(index);
+	}
+	
+	public AccountPage accountRegister()
+	{
+		registerButton.click();
+		AccountPage accountPage = new AccountPage(driver);
+		return accountPage;
+	}
 	
 	
 	

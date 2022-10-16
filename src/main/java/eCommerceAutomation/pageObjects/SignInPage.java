@@ -7,7 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SignInPage {
 	WebDriver driver;
-	public SignInPage(WebDriver driver) {
+	public SignInPage(WebDriver driver)
+	{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -26,10 +27,12 @@ public class SignInPage {
 	
 	
 	
-	public void createAccount()
+	public AccountCreationPage createAccount(String email)
 	{
-		createAccountEmailInput.sendKeys("ambe@gmail.com");
+		createAccountEmailInput.sendKeys(email);
 		createAccountSubmit.click();
+		AccountCreationPage accountCreationPage = new AccountCreationPage(driver);
+		return accountCreationPage;
 		
 	}
 	
@@ -37,6 +40,8 @@ public class SignInPage {
 		emailAddressInput.sendKeys(email);
 		passwordInput.sendKeys(password);
 		submitButton.click();
+		
+		
 	}
 	
 	

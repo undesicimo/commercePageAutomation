@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LandingPage {
-		WebDriver driver;
+	public WebDriver driver;
 		
 	public LandingPage(WebDriver driver) 
 		{

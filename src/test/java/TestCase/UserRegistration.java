@@ -3,17 +3,30 @@ package TestCase;
 import org.testng.annotations.Test;
 
 import eCommerceAutomation.BaseTestComponents.BaseTestComponents;
+import eCommerceAutomation.pageObjects.AccountCreationPage;
+import eCommerceAutomation.pageObjects.AccountPage;
 import eCommerceAutomation.pageObjects.SignInPage;
 
 public class UserRegistration extends BaseTestComponents{
 	
 	@Test
-	public void userRegistration() {
-		//1.LPに遷移する
+	public void userRegistration() throws InterruptedException {
+		
+				//1.LPに遷移する
 				landingPage.goToPage();
 				SignInPage signInPage =landingPage.goTosignInPage();
-		
-		
+				//2.サインインボタンを押下,
+				//3.サインイン画面のアカウント登録部分にてをemail入力
+				//4.アカウント登録ボタンを押下
+				AccountCreationPage accountCreationPage = signInPage.createAccount("am513515@gmail.com");
+				//5.アカウント登録画面、登録内容の入力
+				//6.アカウント登録ボタンを押下
+				accountCreationPage.inputPersonalInformation("Josh", "Ma", "12345");
+				accountCreationPage.inputAddressInformation("Street123", "City", "12345", "12345");
+				accountCreationPage.inputAccountDropdowns(1);
+				AccountPage accountPage = accountCreationPage.accountRegister();
+				//7.アカウント登録完了ページを確認。
+				accountPage.verifyAccountPage();
 	}
 	
 }
