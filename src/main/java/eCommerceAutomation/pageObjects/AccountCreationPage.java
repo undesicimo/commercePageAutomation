@@ -1,5 +1,9 @@
 package eCommerceAutomation.pageObjects;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -46,7 +50,12 @@ public class AccountCreationPage {
 	WebElement dropDownState;
 	@FindBy(id="id_country")
 	WebElement dropDownCountry;
-
+	@FindBy(id="company")
+	WebElement companyInput;
+	@FindBy(id="phone")
+	WebElement homePhoneInput;
+	@FindBy(xpath="//div/ol/li")
+	List<WebElement> errorMessages;
 	
 	public void inputPersonalInformation( String firstName, String lastName, String password ) {
 		mrRadioButton.click();
@@ -54,6 +63,25 @@ public class AccountCreationPage {
 		lastNameInput.sendKeys(lastName);
 		passwordInput.sendKeys(password);
 	}
+	public void inputOptionalFields(String company, String homephone)
+	{
+		companyInput.sendKeys(company);
+		homePhoneInput.sendKeys(homephone);
+		registerButton.click();
+		
+	}
+	public void printRequiredErrorMsg()
+	{
+		errorMessages.stream().map(s->s.getText()).forEach(System.out::println);
+		
+	}
+	public Boolean verifyErrMsg()
+	{
+		List <String> errMsg = errorMessages.stream().map(s->s.getText()).collect(Collectors.toList());
+		Boolean verify = errMsg.get(0).contains("required");
+		return verify;
+	}
+	
 	
 	public void inputAddressInformation(String address, String city, String postalcode,String phoneNumber)
 	{
@@ -63,6 +91,7 @@ public class AccountCreationPage {
 		mobilePhoneInput.sendKeys(phoneNumber);
 		
 	}
+
 	
 	public void inputAccountDropdowns(int index)
 	{

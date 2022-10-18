@@ -1,9 +1,13 @@
 package eCommerceAutomation.pageObjects;
 
+import static org.testng.Assert.assertTrue;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import dev.failsafe.internal.util.Assert;
 
 public class SignInPage {
 	WebDriver driver;
@@ -24,6 +28,8 @@ public class SignInPage {
 	WebElement createAccountEmailInput;
 	@FindBy(id="SubmitCreate")
 	WebElement createAccountSubmit;
+	@FindBy(xpath="//div[@id='create_account_error']/ol/li")
+	WebElement emailAddressError;
 	
 	
 	
@@ -34,6 +40,13 @@ public class SignInPage {
 		AccountCreationPage accountCreationPage = new AccountCreationPage(driver);
 		return accountCreationPage;
 		
+	}
+	
+	public String getErrorMessage()
+	{
+		System.out.println(emailAddressError.getText());
+		String errorMessage = emailAddressError.getText();
+		return errorMessage;
 	}
 	
 	public void signIn(String email, String password) {

@@ -5,8 +5,7 @@
     <classes>
       <class name="TestCase.UserRegistration">
         <methods>
-          <include name="userRegistration"/>
-          <include name="closeDriver"/>
+          <include name="userRegistrationFieldsVerify"/>
           <include name="launchBrowser"/>
         </methods>
       </class> <!-- TestCase.UserRegistration -->

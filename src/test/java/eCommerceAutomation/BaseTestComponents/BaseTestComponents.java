@@ -33,9 +33,9 @@ public class BaseTestComponents  {
 		return landingPage;
 		
 	}
-	@AfterMethod(alwaysRun=true)
-	public void closeDriver()
-	{
-		driver.close();
-	}
+//	@AfterMethod(alwaysRun=true)
+//	public void closeDriver()
+//	{
+//		driver.close();
+//	}
 }

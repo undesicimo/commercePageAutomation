@@ -1,5 +1,8 @@
 package TestCase;
 
+import static org.testng.Assert.assertTrue;
+
+import org.junit.Assert;
 import org.testng.annotations.Test;
 
 import eCommerceAutomation.BaseTestComponents.BaseTestComponents;
@@ -28,5 +31,31 @@ public class UserRegistration extends BaseTestComponents{
 				//7.アカウント登録完了ページを確認。
 				accountPage.verifyAccountPage();
 	}
-	
+	@Test
+	public void userRegistrationError()
+	{
+				landingPage.goToPage();
+				SignInPage signInPage =landingPage.goTosignInPage();
+				//2.サインインボタンを押下,
+				//3.サインイン画面のアカウント登録部分にてをemail入力
+				//4.アカウント登録ボタンを押下
+				signInPage.createAccount("123");
+				//5.無効なEmailエラーメッセージの確認
+				assertTrue(signInPage.getErrorMessage().contains("Invalid"));
+				
+	}
+	@Test
+	public void userRegistrationFieldsVerify()
+	{
+		//1.LPに遷移する
+		landingPage.goToPage();
+		SignInPage signInPage =landingPage.goTosignInPage();
+		//2.サインインボタンを押下,
+		//3.サインイン画面のアカウント登録部分にてをemail入力
+		//4.アカウント登録ボタンを押下
+		AccountCreationPage accountCreationPage = signInPage.createAccount("am13515@gmail.com");
+		accountCreationPage.inputOptionalFields("human", "12345");
+		accountCreationPage.printRequiredErrorMsg();
+		Assert.assertTrue(accountCreationPage.verifyErrMsg());
+	}
 }
