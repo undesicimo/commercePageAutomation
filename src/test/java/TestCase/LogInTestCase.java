@@ -1,11 +1,8 @@
 package TestCase;
 
-import java.io.IOException;
-
 import org.testng.annotations.Test;
 
 import eCommerceAutomation.BaseTestComponents.BaseTestComponents;
-import eCommerceAutomation.pageObjects.LandingPage;
 import eCommerceAutomation.pageObjects.SignInPage;
 
 public class LogInTestCase extends BaseTestComponents{
