@@ -45,10 +45,12 @@ public class SignInPage {
 		return errorMessage;
 	}
 	
-	public void signIn(String email, String password) {
+	public AccountPage signIn(String email, String password) {
 		emailAddressInput.sendKeys(email);
 		passwordInput.sendKeys(password);
 		submitButton.click();
+		AccountPage accountPage = new AccountPage(driver);
+		return accountPage;
 		
 		
 	}
